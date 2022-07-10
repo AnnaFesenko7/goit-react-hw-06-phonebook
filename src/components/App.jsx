@@ -3,9 +3,10 @@ import s from './App.module.css';
 import ContactsList from './ContactsList/ContactsList';
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-function App(contacts) {
+export default function App() {
+  const contacts = useSelector(state => state.items);
   return (
     <div
       style={{
@@ -29,7 +30,7 @@ function App(contacts) {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  contacts: state.items,
-});
-export default connect(mapStateToProps, null)(App);
+// const mapStateToProps = state => ({
+//   contacts: state.items,
+// });
+// export default connect(mapStateToProps, null)(App);

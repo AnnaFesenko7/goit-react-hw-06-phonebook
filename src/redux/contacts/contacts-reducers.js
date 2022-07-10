@@ -1,4 +1,4 @@
-// import actionTypes from './contacts-types';
+import showAlert from '../helpers';
 import { createReducer } from '@reduxjs/toolkit';
 import { saveContact, deleteContact, changeFilter } from './contacts-actions';
 
@@ -20,10 +20,6 @@ const items = [
   // },
 ];
 
-const showAlert = name => {
-  const message = `${name} is already in contacts`;
-  alert(message);
-};
 // export const itemsReducer = (state = items, { type, payload }) => {
 //   switch (type) {
 //     case actionTypes.ADD:

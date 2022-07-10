@@ -1,11 +1,13 @@
 // import { useState } from 'react';
 import s from './Filter.module.css';
 import { nanoid } from 'nanoid';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as contactsActions from '../../redux/contacts/contacts-actions';
 
-function Filter({ filter, onChange }) {
+export default function Filter() {
   const loginInputId = nanoid();
+  const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
 
   return (
     <div className={s.filter__wrapper}>
@@ -16,18 +18,18 @@ function Filter({ filter, onChange }) {
         className={s.filter__input}
         type="text"
         value={filter}
-        onChange={onChange}
+        onChange={e => dispatch(contactsActions.changeFilter(e.target.value))}
       />
     </div>
   );
 }
 
-const mapStateToProps = state => ({
-  filter: state.filter,
-});
+// const mapStateToProps = state => ({
+//   filter: state.filter,
+// });
 
-const mapDispatchToProps = dispatch => ({
-  onChange: e => dispatch(contactsActions.changeFilter(e.target.value)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   onChange: e => dispatch(contactsActions.changeFilter(e.target.value)),
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+// export default connect(mapStateToProps, mapDispatchToProps)(Filter);

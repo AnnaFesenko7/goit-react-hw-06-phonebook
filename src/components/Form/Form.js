@@ -1,13 +1,16 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import s from './Form.module.css';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as contactsActions from '../../redux/contacts/contacts-actions';
 
-function Form({ saveContact }) {
+export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [id, setId] = useState('');
+  const dispatch = useDispatch();
+  const saveContact = () =>
+    dispatch(contactsActions.saveContact({ name, number, id }));
 
   const handelInputChange = event => {
     const { name, value } = event.target;
@@ -70,7 +73,7 @@ function Form({ saveContact }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  saveContact: contact => dispatch(contactsActions.saveContact(contact)),
-});
-export default connect(null, mapDispatchToProps)(Form);
+// const mapDispatchToProps = dispatch => ({
+//   saveContact: contact => dispatch(contactsActions.saveContact(contact)),
+// });
+// export default connect(null, mapDispatchToProps)(Form);
